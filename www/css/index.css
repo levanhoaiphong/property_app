@@ -1,0 +1,352 @@
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-color:#E4E4E4;
+    background-image:linear-gradient(to bottom, #A7A7A7 0%, #E4E4E4 51%);
+    font-family: system-ui, -apple-system, -apple-system-font, 'Segoe UI', 'Roboto', sans-serif;
+    font-size:12px;
+    height:100vh;
+    margin:0px;
+    padding:0px;
+    /* Padding to avoid the "unsafe" areas behind notches in the screen */
+    padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+    width:100%;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Portrait layout (default) */
+.app {
+    position:absolute;             /* position in the center of the screen */
+    left:50%;
+    top:50%;
+    height:50px;                   /* text area height */
+    width:225px;                   /* text area width */
+    text-align:center;
+    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
+                                   /* offset horizontal: half of text area width */
+}
+
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    .app {
+        background-position:left center;
+        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
+        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
+                                      /* offset horizontal: half of image width and text area width */
+    }
+}
+
+h1 {
+    font-size:24px;
+    font-weight:normal;
+    margin:0px;
+    overflow:visible;
+    padding:0px;
+    text-align:center;
+}
+
+.event {
+    border-radius:4px;
+    color:#FFFFFF;
+    font-size:12px;
+    margin:0px 30px;
+    padding:2px 0px;
+}
+
+.event.listening {
+    background-color:#333333;
+    display:block;
+}
+
+.event.received {
+    background-color:#4B946A;
+    display:none;
+}
+
+#deviceready.ready .event.listening { display: none; }
+#deviceready.ready .event.received { display: block; }
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+
+.blink {
+    animation:fade 3000ms infinite;
+    -webkit-animation:fade 3000ms infinite;
+}
+
+
+@media screen and (prefers-color-scheme: dark) {
+    body {
+        background-image:linear-gradient(to bottom, #585858 0%, #1B1B1B 51%);
+    }
+}
+
+
+
+.txt-colours{
+    color: #379683;
+    font-weight: 700 !important;
+    font-size: 15px !important;
+    margin-top: 20px !important;
+}
+    
+.ui-input-text{
+    padding-left: 5px;
+    padding-right: 5px;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    border-bottom: 2px solid #379683 !important;
+    background:transparent;
+    padding: 10px 0;
+}
+html head+body .ui-btn.ui-btn-b{
+    text-shadow: none;
+}
+.ui-page-theme-a .ui-body-inherit{
+    /* background: transparent; */
+}
+.ui-page-theme-a .ui-focus{
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+.ui-page-theme-a .ui-btn{
+    background: #379683 !important;
+    color: white;
+    font-weight: 400;
+    text-shadow: none !important;
+}
+.ui-page-theme-a .ui-btn:hover{
+    background: #05386B !important;
+    color: white;
+
+}
+.ui-page-theme-a .ui-btn:focus{
+    box-shadow: none !important;
+}
+.ui-field-contain {
+    border-bottom-width: 0px;
+    border-bottom-style: solid
+}
+.frm-select{
+    margin-bottom: 15px 0 !important;
+}
+.ui-field-contain{
+    padding: 0 !important;
+}
+
+.ui-popup-container {
+    z-index: 1100;
+    display: inline-block;
+    position: absolute;
+    padding: 0;
+    outline: 0;
+    width: 349px;
+    top: 367px;
+    left: 12.5px;
+    background-color: white;
+}
+#frm-confirm tr{
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+#frm-confirm th{
+    text-align: inherit;
+    padding: 10px;
+}
+.main-value{
+    text-align: center;
+}
+.main-text{
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.list{
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 1px #379683;
+    padding: 5px 15px;
+    margin: 10px 15px;
+}
+
+.show_list ul{
+    list-style: none;
+    margin-top: 25px;
+}
+#list-account li{
+    padding: 15px;
+    color: black;
+    background-color: rgb(211,211,211);
+}
+.show_list ul li{
+    margin-bottom: 15px;
+    
+}
+.ui-btn.ui-btn-b {
+    border-color: #379683 !important;
+}
+
+.ui-input-text {
+    padding-left: 5px;
+    padding-right: 5px;
+    border: none;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    border-radius: 0;
+    border-bottom: 2px solid #379683 !important;
+}
+
+.search-form {
+  width: 0%;
+}
+
+.search-form input {
+  border-right-style: none;
+}
+
+.search-form button {
+  background: none;
+  padding: 0;
+  display: none;
+}
+
+.search-form button i {
+  font-size: 1.9em;
+  color: #000;
+  padding: 10px;
+}
+
+.search-form span.search-icon {
+  font-size: 1.9em;
+  color: #000;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.search-form .form-control {
+  padding: 0;
+  border: 0;
+}
+
+.search-form .input-group-addon {
+  background: #fff;
+  border: 0;
+}
+
+.search-form.open {
+  width: 100%;
+}
+
+.search-form.open .form-control {
+  padding: 30px 25px;
+}
+
+.ui-header{
+    background:#379683 !important;
+}
+
+#page-home .ui_block{
+    background-color: white !important;
+    color: #05386B !important;
+    box-shadow: none !important;
+}
+
+
+#footer .ui-nodisc-icon{
+    color: black !important;
+}
+
+.ui-btn-icon-right:after {
+    background-color: transparent !important;
+}
+
+.ui-input-text {
+    padding-left: 5px;
+    padding-right: 5px;
+    border: none;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    border-radius: 0;
+    border-bottom: 2px solid #00704a !important;
+}
+
+.ui-input-search{
+    padding: 5px 0;
+}
+
+.contact-info{
+    text-align: center;
+}
+
+.contact-info p {
+    font-size: 13px;
+}
+
+.contact-info a {
+    text-decoration: underline;
+    font-size: 14px;
+}
+.contact-info_author strong{
+    font-size: 14px;
+}
+
+.contact-copyright{
+    margin-top: 30px;
+    text-align: center;
+}
+
+.header-bars{
+    margin-right: 10px;
+}
+
+.search-list{
+    margin: 25px 0 !important;
+}
+.detail-list{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+.ui-bar-a, .ui-page-theme-a .ui-bar-inherit, html .ui-bar-a .ui-bar-inherit, html .ui-body-a .ui-bar-inherit, html body .ui-group-theme-a .ui-bar-inherit{
+    text-shadow: none !important;
+}
+.ui-page-theme-a{
+    text-shadow: none !important;
+}
+
+.page-home_title{
+    margin-left: 10px;
+    font-weight: 700;
+}
+.page-home_title{
+    font-size: 20px;
+    font-weight: 400;
+}
+.page-home_strong{
+    font-size: 20px;
+    font-weight: 1000;
+}
+
+.ui-input-search:after {
+    margin-left: 5px !important;
+}
+
+.ui-input-search input {
+    padding-left: 35px;
+}
+
+#error{
+    color: red;
+}

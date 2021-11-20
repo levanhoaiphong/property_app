@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='Content-Security-Policy'
+        content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    <meta name='format-detection' content='telephone=no'>
+    <meta name='msapplication-tap-highlight' content='no'>
+    <meta name='viewport' content='initial-scale=1, width=device-width, viewport-fit=cover'>
+    <meta name='color-scheme' content='light dark'>
+
+    <link rel='stylesheet' href='css/jquery.mobile-1.4.5.min.css'>
+    <link rel='stylesheet' href='css/index.css'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>Database</title>
+</head>
+
+<body>
+    <!-- PAGE 'HOME' -->
+    <div data-role='page' id='page-home'>
+        <div data-role='header' data-position='fixed'>
+            <div style="display:flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <span class="page-home_title">Cordova</span><span><strong
+                            class="page-home_strong">sample</strong></span>
+                </div>
+                <div>
+                    <a style="border: none; background-color: transparent;" id="panel-open"
+                        class="ui-btn ui-icon-bars ui-btn-icon-notext ui-nodisc-icon header-bars">Open Panel</a>
+                </div>
+            </div>
+
+        </div>
+        <div data-role='main' class='ui-content'>
+            <div class="ui-grid-a">
+                 <div class="ui-block-a">
+                    <a href="#page-create"
+                        class="ui-btn ui-alt-icon ui-icon-plus ui-nodisc-icon ui-btn-icon-top ui_block">New Property</a>
+                </div>
+                    <div class="ui-block-b">
+                    <a href="#page-list"
+                        class="ui-btn ui-alt-icon ui-icon-grid ui-nodisc-icon ui-btn-icon-top ui_block">Property
+                        List</a>
+                </div>
+            </div>
+            <div class="ui-grid-a">
+                    <div class="ui-block-a"><a href="#page-about"
+                        class="ui-btn ui-alt-icon ui-icon-info ui-nodisc-icon ui-btn-icon-top ui_block">About Us</a>
+                </div>
+            </div>
+            <button id="btn-beep">Beep</button>
+            <button id="btn-vibration">Vibrate</button>
+        </div>
+
+
+        <div data-role='footer' data-position='fixed' id="footer">
+            <div data-role='navbar'>
+                <ul>
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-home' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext ui-nodisc-icon ui-state-persist ui-btn-active ui_footer'>Home</a>
+                    </li>
+
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-create' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-plus ui-btn-icon-notext ui-nodisc-icon ui_footer'>Create
+                            Account</a>
+                    </li>
+
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-list' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-grid ui-btn-icon-notext ui-nodisc-icon ui_footer'>Account
+                            List</a>
+                    </li>
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-about' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-info ui-btn-icon-notext ui-nodisc-icon ui_footer'>About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 'CREATE NEW ACCOUNT' -->
+    <div data-role='page' id='page-create'>
+        <div data-role='header' data-position='fixed'>
+            <div style="display:flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <span class="page-home_title">Cordova</span><span><strong
+                            class="page-home_strong">sample</strong></span>
+                </div>
+                <div>
+                    <a style="border: none; background-color: transparent;" id="panel-open"
+                        class="ui-btn ui-icon-bars ui-btn-icon-notext ui-nodisc-icon header-bars">Open Panel</a>
+                </div>
+            </div>
+        </div>
+
+        <div data-role='main' class='ui-content'>
+            <!--Registration Form-->
+            <form id='frm-register'>
+                <span id="error"></span>
+                <label class="txt-colours" for="name">Name</label>
+                <input required type="text" id="name" placeholder="Enter Name">
+
+                <label class="txt-colours" for="address">Address</label>
+                <input required type="text" id="address" placeholder="Enter Address">
+
+                <div class="frm-select">
+                    <select id="city"></select>
+                </div>
+                <div class="frm-select">
+                    <select id="distrit"></select>
+                </div>
+                <div>
+                    <select id="ward"></select>
+                </div>
+                <label class="txt-colours" for="id">Type</label>
+
+                <select id="type" required></select>
+
+                <label class="txt-colours" for="id">Furniture</label>
+
+                <select id="furniture" required></select>
+
+                <label class="txt-colours" for="id">Number of Bedrooms</label>
+                <input required type="number" id="bedrooms" placeholder="Enter bedrooms">
+
+                <label class="txt-colours" for="id">Monthly Price</label>
+                <input required type="number" id="price" placeholder="Enter price">
+
+                <label class="txt-colours" for="id">Reporter</label>
+                <input required type="text" id="reporter" placeholder="Enter reporter">
+
+                <label class="txt-colours" for="id">Note</label>
+                <input type="text" id="note" placeholder="Enter note">
+                <button type="submit" class="green">Create Account</button>
+            </form>
+            <div class="ui-popup-container ui-popup-active" id="frm-confirm-popup">
+                <form data-role="popup" id="frm-confirm" style="height: 450px;"
+                    class="ui-content ui-popup ui-body-inherit ui-overlay-shadow ui-corner-all" data-overlay-theme="b">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>Name: </th>
+                                <td id="name"></td>
+                            </tr>
+                            <tr>
+                                <th>Address: </th>
+                                <td>
+                                    <span id="address"></span>,
+                                    <span id="ward"></span>,
+                                    <span id="district"></span>,
+                                    <span id="city"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Type: </th>
+                                <td id="type"></td>
+                            </tr>
+                            <tr>
+                                <th>Bedroom: </th>
+                                <td id="bedroom"></td>
+                            </tr>
+                            <tr>
+                                <th>Price: </th>
+                                <td id="price"></td>
+                            </tr>
+                            <tr>
+                                <th>Furniture: </th>
+                                <td id="furniture"></td>
+                            </tr>
+                            <tr>
+                                <th>Reporter: </th>
+                                <td id="reporter"></td>
+                            </tr>
+                            <tr>
+                                <th>Note: </th>
+                                <td id="note"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a" style="padding: 5px;">
+                            <button type="button" id="edit" class=" ui-btn ui-shadow ui-corner-all">Cancel</button>
+                        </div>
+
+                        <div class="ui-block-b" style="padding: 5px;">
+                            <button type="submit" class="green ui-btn ui-shadow ui-corner-all">Confirm</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div data-role='footer' data-position='fixed' id="footer">
+            <div data-role='navbar'>
+                <ul>
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-home' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext ui-nodisc-icon ui_footer'>Home</a>
+                    </li>
+
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-create' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-plus ui-btn-icon-notext ui-nodisc-icon ui-state-persist ui-btn-active ui_footer'>Create
+                            Account</a>
+                    </li>
+
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-list' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-grid ui-btn-icon-notext ui-nodisc-icon ui_footer'>Account
+                            List</a>
+                    </li>
+
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-about' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-info ui-btn-icon-notext ui-nodisc-icon ui_footer'>About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 'ACCOUNT LIST' -->
+    <div data-role='page' id='page-list'>
+        <div data-role='header' data-position='fixed'>
+            <div style="display:flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <span class="page-home_title">Cordova</span><span><strong
+                            class="page-home_strong">sample</strong></span>
+                </div>
+                <div>
+                    <a style="border: none; background-color: transparent;" id="panel-open"
+                        class="ui-btn ui-icon-bars ui-btn-icon-notext ui-nodisc-icon header-bars">Open Panel</a>
+                </div>
+            </div>
+        </div>
+        <div class="search-list">
+            <input type="search" placeholder="Search Filter Properties..." name="search" id="search-property" value=""
+                data-mini="true" />
+        </div>
+
+        <div class="show_list" data-role='main'>
+            <!--Display Account List-->
+            <ul id='list-account' data-role='listview' class='ui-nodisc-icon ui-alt-icon'></ul>
+        </div>
+
+        <div data-role='footer' data-position='fixed' id="footer">
+            <div data-role='navbar'>
+                <ul>
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-home' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext ui-nodisc-icon ui_footer'>Home</a>
+                    </li>
+
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-create' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-plus ui-btn-icon-notext ui-nodisc-icon ui_footer'>Create
+                            Account</a>
+                    </li>
+
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-list' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-grid ui-btn-icon-notext ui-nodisc-icon ui-state-persist ui-btn-active ui_footer'>Account
+                            List</a>
+                    </li>
+
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-about' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-info ui-btn-icon-notext ui-nodisc-icon ui_footer'>About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 'ACCOUNT DETAILS' -->
+    <div data-role='page' id='page-detail'>
+        <div data-role='header' data-position='fixed'>
+            <div style="display:flex; justify-content: space-between; align-items: center;">
+                <div style='margin-left: 5px;'>
+                    <a style='border: none; background-color: transparent;' href='#page-list' data-transition='none'
+                        class='ui-btn ui-icon-carat-l ui-btn-icon-notext ui-nodisc-icon ui-alt-icon'>Back to list</a>
+                </div>
+                <div>
+                    <a style="border: none; background-color: transparent;" id="panel-open"
+                        class="ui-btn ui-icon-bars ui-btn-icon-notext ui-nodisc-icon header-bars">Open Panel</a>
+                </div>
+            </div>
+        </div>
+
+
+        <div data-role='main'>
+            <div style="display: flex; justify-content: center; margin-top: 30px; margin-bottom: 15px;">
+                <img src='img/images.jpg' style="border-radius: 50%;" width='200' height="200">
+            </div>
+            <h1 style="text-align: center; font-weight: 600; font-size: 25px; margin-bottom: 20px;" id='name'></h1>
+            <div id="detail">
+                <table style="padding: 0 15px; text-align: left;">
+                    <tr>
+                        <th class="main-value"><img src="./img/local.png" style="height: 20px; background: transparent;"
+                                alt=""></th>
+                        <td class="main-text">
+                            <span id='street'></span>,
+                            <span id='ward'></span>,
+                            <span id="district"></span>,
+                            <span id="city"></span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th class="main-value"><img src="./img/house.jpg" style="height: 20px; background: transparent;"
+                                alt=""></th>
+                        <td class="main-text" id="type"></td>
+                    </tr>
+                    <tr>
+                        <th class="main-value"><img src="./img/bedrooms.png"
+                                style="height: 20px; background: transparent;" alt=""></th>
+                        <td class="main-text" id="bedroom"></td>
+                    </tr>
+                    <tr>
+                        <th class="main-value"><img src="./img/price.png" style="height: 20px; background: transparent;"
+                                alt=""></th>
+                        <td class="main-text" id="price"></td>
+                    </tr>
+                    <tr>
+                        <th class="main-value"><img src="./img/furniture.png"
+                                style="height: 20px; background: transparent;" alt="">
+                        </th>
+                        <td class="main-text" id="furniture"></td>
+                    </tr>
+                    <tr>
+                        <th class="main-value"><img src="./img/note.jpg" style="height: 20px; background: transparent;"
+                                alt=""></th>
+                        <td class="main-text" id="note"></td>
+                    </tr>
+                    <tr>
+                        <th class="main-value"><img src="./img/date.jpg" style="height: 20px; background: transparent;"
+                                alt=""></th>
+                        <td class="main-text" id="date"></td>
+                    </tr>
+                </table>
+            </div>
+
+            <fieldset class='ui-grid-a' style='margin-top: 25px;'>
+                <div class='ui-block-a'>
+                    <a class='ui-btn' href="#frm-update" data-rel='popup' data-position-to='window'
+                        data-transition='pop' id='btn-update'>Update</a>
+                </div>
+
+                <div class='ui-block-b'>
+                    <a href='#frm-delete' data-rel='popup' data-position-to='window' data-transition='pop'
+                        class='ui-btn ui-btn-b' id="btn-delete-confirm">Delete</a>
+                </div>
+            </fieldset>
+
+            <form data-role="popup" id="frm-delete">
+                <div data-role="header">
+                    <h1 style="padding-top: 20px;">Delete Account?</h1>
+                </div>
+
+                <div role="main" class="ui-content">
+                    <h3>Are you sure you want to delete this account?</h3>
+                    <p>This action cannot be undone.</p>
+                    <br>
+
+                    <p><em>Please type "<strong>confirm delete</strong>" to delete this account.</em></p>
+                    <input type="text" id="txt-delete">
+
+                    <div style="text-align: right;">
+                        <a class="ui-btn ui-corner-all ui-btn-inline" data-rel="back">Cancel</a>
+                        <button type="submit" class="ui-btn ui-corner-all ui-btn-inline ui-disabled"
+                            id="btn-delete">Delete</button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="ui-popup-container ui-popup-active" id="frm-update-popup"
+                style="max-width: 345px; top: 39px; left: 15px;">
+                <form id="frm-update" style="padding: 
+                15px;" data-role="popup" data-overlay-theme="b">
+                    <span id="error"></span>
+                    <label class="txt-colours" for="id">Name</label>
+                    <div class="ui-field-contain">
+                        <input required type="text" data-clear-btn="true" id="name" placeholder="Enter name here...">
+                    </div>
+                    <label class="txt-colours" for="id">Address</label>
+                    <div class="ui-field-contain">
+                        <input required type="text" id="address" placeholder="Enter address here...">
+                    </div>
+                    <div class="ui-controlgroup-controls ">
+                        <div class="ui-select frm-select">
+                            <select id="city" required></select>
+                        </div>
+                        <div class="ui-select frm-select">
+                            <select id="distrit" required></select>
+                        </div>
+                        <div class="ui-select">
+                            <select id="ward" required></select>
+                        </div>
+                    </div>
+                    <label class="txt-colours" for="id">Type</label>
+                    <div class="ui-field-contain">
+                        <div class="ui-select">
+                            <select id="type" required>
+
+                            </select>
+                        </div>
+                    </div>
+                    <label class="txt-colours" for="id">Furniture</label>
+                    <div class="ui-field-contain">
+                        <div class="ui-select">
+                            <select id="furniture" required>
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <label class="txt-colours" for="id">Number of Bedrooms</label>
+                    <div class="ui-field-contain">
+                        <input required type="number" id="bedrooms" placeholder="Enter bedrooms here...">
+                    </div>
+
+                    <label class="txt-colours" for="id">Monthly Price</label>
+                    <div class="ui-field-contain">
+                        <input required type="number" id="price" placeholder="Enter price here...">
+                    </div>
+
+                    <label class="txt-colours" for="id">Reporter</label>
+                    <div class="ui-field-contain">
+                        <input required type="text" id="reporter" placeholder="Enter price here...">
+                    </div>
+                    <button type="submit" class="green ui-btn ui-shadow ui-corner-all">Update Property</button>
+                </form>
+            </div>
+
+
+
+            <form id="frm-comment" style="margin-top: 25px;margin-left: 5px;margin-right: 5px;">
+                <textarea id="txt-comment" placeholder="Please enter your note here..."
+                    class="ui-input-text ui-shadow-inset ui-body-inherit ui-corner-all ui-textinput-autogrow"
+                    style="height: 43px;" spellcheck="false"></textarea>
+
+                <div style="text-align: right;">
+                    <button type="submit" style="padding: 10px 20px;"
+                        class="green ui-btn ui-btn-b ui-btn-inline ui-corner-all ui-mini">Add Note</button>
+                </div>
+
+                <div id="list-comment">
+                </div>
+            </form>
+        </div>
+
+        <div data-role='footer' data-position='fixed' id="footer">
+            <div data-role='navbar'>
+                <ul>
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-home' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext ui-nodisc-icon ui_footer'>Home</a>
+                    </li>
+
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-create' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-plus ui-btn-icon-notext ui-nodisc-icon ui_footer'>Create
+                            Account</a>
+                    </li>
+
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-list' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-grid ui-btn-icon-notext ui-nodisc-icon ui-state-persist ui-btn-active ui_footer'>Account
+                            List</a>
+                    </li>
+
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-about' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-info ui-btn-icon-notext ui-nodisc-icon ui_footer'>About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 'SEARCH' -->
+
+
+    <!-- PAGE 'ABOUT' -->
+    <div data-role='page' id='page-about'>
+        <div data-role='header' data-position='fixed'>
+            <div style="display:flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <span class="page-home_title">Cordova</span><span><strong
+                            class="page-home_strong">sample</strong></span>
+                </div>
+                <div>
+                    <a style="border: none; background-color: transparent;" id="panel-open"
+                        class="ui-btn ui-icon-bars ui-btn-icon-notext ui-nodisc-icon header-bars">Open Panel</a>
+                </div>
+            </div>
+        </div>
+
+        <div data-role='main' class='ui-content'>
+            <h1 style="margin: 15px 0; font-weight: 700;">CORDOVA SAMPLE</h1>
+            <div style="text-align:center">
+                <img src="./img/maxresdefault.jpg" width="200px" height="200px"
+                    style="border-radius:50%; margin-bottom: 25px;" alt="">
+            </div>
+            <div class="contact-info">
+                <h2 style="margin: 15px 0;">Contact</h2>
+                <div class="contact-info_author">
+                    <p>Author</p>
+                    <strong>Lê Văn Hoài Phong</strong>
+                </div>
+                <div class="contact-info_email">
+                    <p>Email</p>
+                    <a>phonglvhgcs17187@fpt.edu.com</a>
+                </div>
+                <div class="contact-info_phone">
+                    <p>Phone</p>
+                    <a>0778655514</a>
+                </div>
+            </div>
+            <div class="contact-copyright">
+                <p>Copyright © 2021 Serco Honan. All rights reserved.</p>
+                <p>Create your own application for the courseworks.</p>
+                <strong>I know my codes so well. Be careful !!!</strong>
+            </div>
+
+        </div>
+
+        <div data-role='footer' data-position='fixed' id="footer">
+            <div data-role='navbar'>
+                <ul>
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-home' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext ui-nodisc-icon ui_footer'>Home</a>
+                    </li>
+
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-create' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-plus ui-btn-icon-notext ui-nodisc-icon ui_footer'>Create
+                            Account</a>
+                    </li>
+
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-list' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-grid ui-btn-icon-notext ui-nodisc-icon ui_footer'>Account
+                            List</a>
+                    </li>
+
+
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-about' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-info ui-btn-icon-notext ui-nodisc-icon ui-state-persist ui-btn-active ui_footer'>About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src='cordova.js'></script>
+    <script src='js/jquery.js'></script>
+    <script src='js/jquery.mobile-1.4.5.min.js'></script>
+    <script src="js/data.js"></script>
+    <script src='js/index.js'></script>
+</body>
+
+</html>
