@@ -43,6 +43,10 @@ function transactionError(tx, error) {
     log(`Errors when executing SQL query. [Code: ${error.code}] [Message: ${error.message}]`);
 }
 
+$(document).on('vclick', ' #cancel', function () {
+    $('#page-create #frm-confirm').popup('close');
+});
+
 // Run this function after starting the application.
 function onDeviceReady() {
     prepareDatabase(db)
@@ -230,18 +234,19 @@ function showList() {
 
         function transactionSuccess(tx, result) {
             log(`Get list of accounts successfully.`);
-
+            
             // Prepare the list of accounts.
             let listAccount = `<ul class="ui-nodisc-icon ui-alt-icon  ui-listview">`;
             for (let property of result.rows) {
+                const { Name, City, Bedroom, Price } = property
                 listAccount += `<li >
                 <a data-details='{"Id" : ${property.Id}}' class="ui-btn-icon-right ui-icon-carat-r" >
-                                    <h2 style="color:black; font-weight: 700; margin-bottom: 0px; font-size: 18px">${property.Name}</h2>
-                                    <p style="color:black; font-size: 14px; margin-bottom: 8px">${property.City}</p>
+                                    <h2 style="color:black; font-weight: 700; margin-bottom: 0px; font-size: 18px">${Name}</h2>
+                                    <p style="color:black; font-size: 14px; margin-bottom: 8px">${City}</p>
                                      <div class="detail-list">
                                      <div>
                                         <img src="./img/icon-bedroom.png" style="height: 20px; background: transparent; margin-bottom: -5px;" alt="">
-                                        <span style="color:black; font-weight: 500;  ">${property.Bedroom}<span>
+                                        <span style="color:black; font-weight: 500;  ">${Bedroom}<span>
                                      </div>
                                    <div>
                                         <img src="./img/icon-type.png" style="height: 20px; background: transparent; margin-bottom: -5px;" alt="">
@@ -249,7 +254,7 @@ function showList() {
                                  </div>
                                  <div>
                                         <img src="./img/icon-price.png" style="height: 20px; background: transparent; margin-bottom: -5px;" alt="">
-                                        <span style="color:black, font-weight: 500;">${property.Price.toLocaleString('en-US')} VNĐ / month<span>
+                                        <span style="color:black, font-weight: 500;">${Price.toLocaleString('en-US')} VNĐ / month<span>
                                  </div>
                                 </div>
                                 </a></li>`;
@@ -295,8 +300,6 @@ function showDetail() {
             console.log(result)
             if (result.rows[0] != null) {
                 log(`Get details of account '${result}' successfully.`);
-                
-
                 name = result.rows[0].Name;
                 street = result.rows[0].Street;
                 city = result.rows[0].City;
